@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Game Panel</title>
+    <script type="text/javascript">
+       function loadFunc(){
+         document.getElementById('url').innerText=window.location.href;
+         document.getElementById('playername').value="{{ currentname }}";
+       }
+    </script>
+</head>
+<body onload="loadFunc()">
+
+    <h1>Game Panel</h1>
+    <div class="signup">
+       <p>You are running the game from: <code><span id="url">PLACEHOLDER</span></code></p>
+    </div>
+
+    <h2>Character Sheet</h2>
+    <div class="details">
+       <ul>
+         <li><form action="" method=post>Name: {{ form.hidden_tag() }}{{ form.playername() }}{{ form.submit }}</form></li>
+         <li>Address: {{ address }}</li>
+         <li>Gold: {{ gold }}</li>
+         <li>Experience: {{ xp }}</li>
+    </div>
+
+    <h2>Options</h2>
+    <div>
+        <button value="Refresh Page" onClick="window.location.reload()">Refresh</button>
+    </div>
+</body>
+</html>
+
+
+
+</body>
+</html>
+
+
