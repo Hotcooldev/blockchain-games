@@ -110,4 +110,25 @@ def login():
 # Run the web app
 if __name__ == '__main__':
     socketio.run(app, debug=True, host='0.0.0.0')
+# Route for automatic player signup
+@app.route('/signup', methods=['POST'])
+def login():
+    if request.method == 'POST':
+        # get posted address (should do error checking on this)
+        sent_address = request.get_json()['address']
+        print("Got signup request with address: " + sent_address)
+        # grant connect send and receive
+        print(signupAddress(multichainCli, sent_address))
+        # asset bank imports all addresses
+        print(importAddress(multichainCli, sent_address))          
+        # issue more of the assets (gold and xp) to the new address
+        print(issueAssetToAddress(multichainCli, sent_address, "gold", "100"))
+        print(issueAssetToAddress(multichainCli, sent_address, "xp", "1"))   
+        return render_template('bank/signup_success.html')       
+    else:
+        return render_template('bank/signup_error.html') 
+
+# Run the web app
+if __name__ == '__main__':
+    socketio.run(app, debug=True, host='0.0.0.0')
 
